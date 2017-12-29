@@ -1,29 +1,47 @@
 export function CfPaged (Vue) {
     return Vue.extend({
         props: {
-            collection: {
+            items: {
                 required: true
             },
             selectedKeys: {
                 required: true
+            },
+            wrapper: {
+                default: 'div'
+            },
+            pageWrapper: {
+                default: 'div'
             }
         },
 
         methods: {
             /**
-             * Toggle item in selected keys. If item
-             * already in selected keys, it will remove it,
-             * and add to keys in opposite case.
+             * Check whether a specific page is active.
              *
              * @param item
+             * @return {Boolean}
              */
-            toggleItem (item) {
-                if (this.selectedKeys.hasItem(item)) {
-                    this.selectedKeys.removeItem(item)
-                } else {
-                    this.selectedKeys.addItem(item)
-                }
+            isPageActive (item) {
+                return this.selectedKeys.hasItem(item.id)
             }
+        },
+
+        render (h) {
+            let renderedPages = []
+
+            for (let page of this.items.getItems()) {
+                renderedPages.push(h(this.pageWrapper, {
+                    domProps: {
+                        innerHTML: page.render({
+                            items: this.items,
+                            isActive: this.isPageActive(page)
+                        })
+                    }
+                }))
+            }
+
+            return h(this.wrapper, renderedPages)
         }
     })
 }

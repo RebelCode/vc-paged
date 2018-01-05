@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "cross-env ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "e2e": "cross-env NODE_ENV=e2e ./node_modules/webpack-dev-server/bin/webpack-dev-server.js ",
     "production": "cross-env NODE_ENV=production webpack"
   },
   "author": "RebelCode",
@@ -16,6 +17,8 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "cross-env": "^5.1.1",
+    "std-lib": "git://github.com/RebelCode/std-lib.git#075ac19a127309f70b755e5ca59afdde9ddb2957",
+    "vue": "^2.5.13",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
   }

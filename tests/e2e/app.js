@@ -6,7 +6,7 @@ import {FunctionalArrayCollection} from './../../node_modules/std-lib/src/Functi
 
 let store = {
     items: [
-        new Page(1, '<h1>hello</h1>'),
+        new Page(1, '<h1>Hello World!</h1>'),
         new Page(2, '<avatar name="John Doe"></avatar>'),
     ],
     selectedItems: []

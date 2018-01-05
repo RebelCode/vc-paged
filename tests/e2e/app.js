@@ -1,8 +1,21 @@
 import {CfPaged} from './../../src/index';
-import Page from './../mocks/Page';
+
 import Vue from 'vue';
 import {FunctionalLimitedCollection, FLC_OVERFLOW_THROW} from './../../node_modules/std-lib/src/FunctionalLimitedCollection'
 import {FunctionalArrayCollection} from './../../node_modules/std-lib/src/FunctionalArrayCollection'
+
+/*
+ * Simple page implementation
+ */
+class Page {
+    constructor (id, template) {
+        this.id = id;
+        this.template = template;
+    }
+    render (ctx) {
+        return this.template;
+    }
+}
 
 let store = {
     items: [

@@ -1,18 +1,22 @@
 import {CfPaged} from './../../src/index';
 
 import Vue from 'vue';
-import {FunctionalLimitedCollection, FLC_OVERFLOW_THROW} from './../../node_modules/std-lib/src/FunctionalLimitedCollection'
+import {
+    FunctionalLimitedCollection,
+    FLC_OVERFLOW_THROW
+} from './../../node_modules/std-lib/src/FunctionalLimitedCollection'
 import {FunctionalArrayCollection} from './../../node_modules/std-lib/src/FunctionalArrayCollection'
 
 /*
  * Simple page implementation
  */
 class Page {
-    constructor (id, template) {
+    constructor(id, template) {
         this.id = id;
         this.template = template;
     }
-    render (ctx) {
+
+    render(ctx) {
         return this.template;
     }
 }
@@ -34,29 +38,27 @@ Vue.component('avatar', {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    new Vue({
-        el: '#app',
-        data () {
-            return {
-                items: new FunctionalArrayCollection(() => {
-                    return store.items
-                }, (newItems) => {
-                    store.items = newItems
-                }, (item) => {
-                    return item.id
-                }),
-                selectedItems: new FunctionalLimitedCollection(() => {
-                    return store.selectedItems
-                }, (newSelected) => {
-                    store.selectedItems = newSelected
-                }, (item) => {
-                    return item
-                }, 5, FLC_OVERFLOW_THROW)
-            }
-        },
-        components: {
-            'paged': new CfPaged(Vue)
+new Vue({
+    el: '#app',
+    data () {
+        return {
+            items: new FunctionalArrayCollection(() => {
+                return store.items
+            }, (newItems) => {
+                store.items = newItems
+            }, (item) => {
+                return item.id
+            }),
+            selectedItems: new FunctionalLimitedCollection(() => {
+                return store.selectedItems
+            }, (newSelected) => {
+                store.selectedItems = newSelected
+            }, (item) => {
+                return item
+            }, 5, FLC_OVERFLOW_THROW)
         }
-    })
+    },
+    components: {
+        'paged': new CfPaged(Vue)
+    }
 });

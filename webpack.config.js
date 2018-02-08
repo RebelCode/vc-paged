@@ -33,8 +33,8 @@ let entries = {
     'default': {
         entry: "./src/index.js",
         output: {
-            path: __dirname + "/build/js",
-            filename: "lib.min.js",
+            path: __dirname + "/dist",
+            filename: "vc-paged.js",
             libraryTarget: 'umd'
         }
     }
